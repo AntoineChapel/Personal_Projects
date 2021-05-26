@@ -36,13 +36,14 @@ class Gradient_Descent:
             self.e = np.zeros((self.test_size, 1))
             
         self.y = self.parameter_a*(self.X*self.X) + self.parameter_b*self.X + self.parameter_c + self.e
-        
+      
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size=0.3, random_state=42)
         
         if self.parameter_a != 0:
             self.param_a = np.random.randint(0, 10)
         else:
             self.param_a = 0
+            
         self.param_b = np.random.randint(0, 10)
         self.param_c = np.random.randint(0, 10)
         
@@ -159,46 +160,3 @@ class Gradient_Descent:
         print("Parameter a: " + str(float(self.param_a)))
         print("Parameter b: " + str(float(self.param_b)))
         print("Parameter c: " + str(float(self.param_c)))
-
-
-# In[144]:
-
-
-noisy_test = Gradient_Descent(0, -3, 2, regtype='linear', noise=True)
-
-
-# In[145]:
-
-
-noisy_test.plot_data()
-
-
-# In[146]:
-
-
-noisy_test.optimize()
-
-
-# In[147]:
-
-
-noisy_test.plot_params()
-
-
-# In[148]:
-
-
-noisy_test.r2_score()
-
-
-# In[149]:
-
-
-noisy_test.params()
-
-
-# In[ ]:
-
-
-
-
