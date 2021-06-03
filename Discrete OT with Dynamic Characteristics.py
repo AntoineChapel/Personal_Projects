@@ -42,7 +42,7 @@ class random_panel:
 
 
 n = Xvals.shape[0]
-t = 25 #Careful: at t=30, the solver runs out of memory
+t = 25 #Careful: above t=20, the solver may run out of memory
 
 
 Xvals_dyna = random_panel(Xvals, t).generate()
