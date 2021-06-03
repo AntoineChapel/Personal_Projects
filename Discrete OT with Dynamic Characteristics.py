@@ -2,13 +2,9 @@
 # coding: utf-8
 
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 import scipy.sparse as spr
-from scipy.optimize import linprog
-from numba import njit
 import gurobipy as grb
-import time
 
 
 data_X = pd.read_csv("https://github.com/math-econ-code/mec_optim_2021-01/raw/master/data_mec_optim/marriage_personality-traits/Xvals.csv")
