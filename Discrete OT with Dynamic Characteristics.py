@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -17,9 +14,6 @@ import time
 data_X = pd.read_csv("https://github.com/math-econ-code/mec_optim_2021-01/raw/master/data_mec_optim/marriage_personality-traits/Xvals.csv")
 data_Y = pd.read_csv("https://github.com/math-econ-code/mec_optim_2021-01/raw/master/data_mec_optim/marriage_personality-traits/Yvals.csv")
 data_affmat = pd.read_csv("https://github.com/math-econ-code/mec_optim_2021-01/raw/master/data_mec_optim/marriage_personality-traits/affinitymatrix.csv")
-
-
-# In[154]:
 
 
 nobs = 1158
@@ -37,8 +31,6 @@ print('Yvals shape:', Yvals.shape)
 print('Affinity Matrix shape:', affmat.shape)
 
 
-# In[155]:
-
 
 class random_panel:
     def __init__(self, init_matrix, time=20):
@@ -52,14 +44,9 @@ class random_panel:
         return X_panel
 
 
-# In[160]:
-
 
 n = Xvals.shape[0]
 t = 25
-
-
-# In[161]:
 
 
 Xvals_dyna = random_panel(Xvals, t).generate()
@@ -73,8 +60,6 @@ print(phi_dyna.shape)
 vecphi = phi_dyna.flatten()
 
 
-# In[162]:
-
 
 p = np.ones((t, n, 1))/n
 q = np.ones((t, n, 1))/n
@@ -87,9 +72,7 @@ B = spr.kron(spr.kron(spr.identity(t), sparse_one), spr.identity(n))
 
 Aconstr = spr.vstack([A, B])
 
-
-# In[ ]:
-
+#grb = Gurobi: Linear Programming Commercial Solver
 
 m=grb.Model('Optimal Marriage')
 x = m.addMVar(shape=t * n**2, name="x")
@@ -97,29 +80,11 @@ m.setObjective(vecphi @ x, grb.GRB.MAXIMIZE)
 m.addConstr(Aconstr @ x == d, name="Constr")
 m.optimize()
 
-
-# In[ ]:
-
-
 pi_panel = np.array(m.getAttr('x')).reshape(t, n, n)
-
-
-# In[ ]:
-
 
 def matching_of_man(man):
     for time in range(t):
         print('Period', time+1, ': Woman', np.argwhere(pi_panel[time, man-1,:] != 0)[0][0] + 1)
 
 
-# In[ ]:
-
-
 matching_of_man(1)
-
-
-# In[ ]:
-
-
-
-
