@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
-
 
 import numpy as np
 import gurobipy as grb
@@ -12,9 +10,6 @@ from scipy import optimize
 from scipy.optimize import Bounds
 from scipy.optimize import LinearConstraint
 from scipy.optimize import minimize
-
-
-# In[231]:
 
 
 class Consumer:
@@ -182,51 +177,3 @@ class Consumer:
             
         plt.plot(x1, x2, 'r--')
         plt.show()
-    #def engel_curve(self):
-    #def demand_curve(self):
-
-
-# In[130]:
-
-
-test_cd = Consumer(2/3, 1/3, 6.34, 6, 50.3, 'cobb-douglas')
-x1_cd, x2_cd, utility_cd = test_cd.optimize()
-test_cd.plot_solution()
-test_cd.opt_x1()
-test_cd.opt_x2()
-
-
-# In[134]:
-
-
-test_substitutes = Consumer(2, 3, 2.12, 2, 12.5, 'substitutes')
-x1, x2, utility = test_substitutes.optimize()
-test_substitutes.plot_solution()
-
-test_substitutes.opt_x1()
-test_substitutes.opt_x2()
-
-
-# In[133]:
-
-
-test_comp = Consumer(1.5, 2.1, 3, 4, 10.4, 'complements')
-test_comp.optimize()
-test_comp.plot_solution()
-
-test_comp.opt_x1()
-test_comp.opt_x2()
-
-
-# In[234]:
-
-
-test_ioc = Consumer(1/2, 1/2, 1, 1, 8, 'cobb-douglas')
-test_ioc.ioc(plotic=True, number=10, mult=1)
-
-
-# In[ ]:
-
-
-
-
